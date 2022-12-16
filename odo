@@ -1,0 +1,140 @@
+---
+syntax: bash
+tags: [ app-development, container-development, kubernetes, k8s, openshift ]
+---
+#   __
+#  /  \__     odo is a CLI tool for fast iterative application development
+#  \__/  \    deployed immediately to your Kubernetes cluster.
+#  /  \__/    Find more information at https://odo.dev
+#  \__/
+#
+
+# To display list of all available commands:
+odo -h
+
+# For help about a particular command:
+odo help [command]
+
+# To display version info:
+odo version
+
+# To login against an OpenShift cluster, using a password:
+odo login [openshift_master_url:port] -u "[username]"
+
+# To login against an OpenShift cluster, using a token:
+odo login [openshift_master_url:port] -t "[token]"
+
+# To logout from an OpenShift cluster:
+odo logout
+
+# To add completion support to your shell (bash, zsh, fish):
+source <(odo completion [shell])
+
+# To add completion support to Powershell:
+odo completion powershell | Out-String | Invoke-Expression
+
+# To create a new namespace/project and set it as the current active one:
+odo create namespace [my-namespace]
+odo create project [my-project]
+
+# To set a namespace/project as the current active one:
+odo set namespace [my-namespace]
+odo set project [my-project]
+
+# To list accessible namespaces or projects:
+odo list namespaces
+odo list projects
+
+# To delete a namespace/project:
+odo delete namespace [my-namespace]
+odo delete project [my-project]
+
+# To initialize a new component in interactive mode:
+odo init
+
+# To initialize a new component with a specific Devfile:
+odo init --name [name] --devfile [devfile_name_in_registry]
+
+# To initialize a new component with a specific Devfile from the web or a local file:
+odo init --name [name] --devfile-path [path]
+
+# To run the component on the cluster in the Dev mode:
+odo dev
+
+# To run the component on the cluster in the Debug mode:
+odo dev --debug
+
+# To run the component on the cluster in the Dev mode and without automatically syncing the code upon any file changes:
+odo dev --no-watch
+
+# To build images defined in the Devfile, and also push them to their registries:
+odo build-images --push
+
+# To deploy the components defined in the Devfile:
+odo deploy
+
+# To list all components defined in the current directory and/or deployed in the current namespace:
+odo list
+
+# To show the logs of the running component:
+odo logs
+
+# To show and follow the logs of the running component:
+odo logs --follow
+
+# To show the logs of the component running in Dev mode:
+odo logs --dev
+
+# To show the logs of the component running in Deploy mode:
+odo logs --deploy
+
+# To describe the component defined in the current directory:
+odo describe component
+
+# To describe any component knowing its name and namespace:
+odo describe component --name [name] --namespace [namespace]
+
+# To delete the component defined in the current directory:
+odo delete component
+
+# To delete any component knowing its name and namespace:
+odo delete component --name [name] --namespace [namespace]
+
+# To list all Devfiles from the registries:
+odo registry
+
+# To list all Devfiles matching the name or description from the specified registry:
+odo registry --filter [nodejs] --devfile-registry [DefaultDevfileRegistry]
+
+# To show details about Devfiles matching the name or description from the specified registry:
+odo registry --filter [nodejs] --devfile-registry [DefaultDevfileRegistry] --details
+
+# To add a new registry:
+odo preference add registry [name] [URL]
+
+# To remove a registry:
+odo preference remove registry [name]
+
+# View all preference values and configured Devfile registries:
+odo preference view
+
+# To set a preference value:
+odo preference set [key] [value]
+
+# Unset a preference value in the global preference
+odo preference unset <key>
+
+# To list all bindable services in the current namespace:
+odo list services
+
+# To list all bindable services from all accesible namespaces:
+odo list services --all-namespaces
+
+# To interactively add a Binding into the local Devfile:
+odo add binding
+
+# To add a specific Binding from the specified namespace into the local Devfile:
+odo add binding --name [name] --service [service-name] --service-namespace [namespace]
+
+# To remove a Binding from the local Devfile:
+odo remove binding --name [name]
